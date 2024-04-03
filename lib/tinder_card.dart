@@ -5,13 +5,13 @@ import './matches.dart';
 
 class TinderSwapCard extends StatefulWidget {
   TinderSwapCard(
-      {Key key, this.title, this.demoProfiles, this.myCallback, this.mySlideTo})
+      {Key? key, this.title, required this.demoProfiles, this.myCallback, this.mySlideTo})
       : super(key: key);
-  final bool mySlideTo;
-  final String title;
+  final bool? mySlideTo;
+  final String? title;
   final List demoProfiles;
 
-  final Function(Decision, Function) myCallback;
+  final Function(Decision?, Function)? myCallback;
 
   @override
   _TinderSwapCardState createState() => _TinderSwapCardState();
@@ -38,7 +38,7 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
                 icon: Icons.clear,
                 iconColor: Colors.red,
                 onPressed: () {
-                  matchEngine.currentMatch.nope();
+                  matchEngine.currentMatch?.nope();
                   matchEngine.cycleMatch();
                 },
               ),
@@ -46,7 +46,7 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
                 icon: Icons.star,
                 iconColor: Colors.blue,
                 onPressed: () {
-                  matchEngine.currentMatch.superLike();
+                  matchEngine.currentMatch!.superLike();
                   matchEngine.cycleMatch();
                 },
               ),
@@ -54,7 +54,7 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
                 icon: Icons.favorite,
                 iconColor: Colors.green,
                 onPressed: () {
-                  matchEngine.currentMatch.like();
+                  matchEngine.currentMatch?.like();
                   matchEngine.cycleMatch();
                 },
               ),
@@ -81,7 +81,7 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
         child: new CardStack(
           matchEngine: matchEngine,
           onSwipeCallback: (match, showOverlay) {
-            widget.myCallback(match, showOverlay);
+            widget.myCallback?.call(match, showOverlay);
           },
           mySlideTo: widget.mySlideTo,
         ),
@@ -92,10 +92,10 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
 }
 
 class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
+  final IconData? icon;
+  final Color? iconColor;
   final double size;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   RoundIconButton.large({
     this.icon,
@@ -112,7 +112,7 @@ class RoundIconButton extends StatelessWidget {
   RoundIconButton({
     this.icon,
     this.iconColor,
-    this.size,
+    required this.size,
     this.onPressed,
   });
 

@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 
 class MatchEngine extends ChangeNotifier {
   final List<Match> _matches;
-  int _currrentMatchIndex;
-  int _nextMatchIndex;
+  late int _currrentMatchIndex;
+  late int _nextMatchIndex;
 
   int get recomCount {
     return _matches.length;
@@ -26,19 +26,19 @@ class MatchEngine extends ChangeNotifier {
   }
 
   MatchEngine({
-    List<Match> matches,
+    required List<Match> matches,
   }) : _matches = matches {
     _currrentMatchIndex = 0;
     _nextMatchIndex = 1;
   }
 
-  Match get currentMatch =>
+  Match? get currentMatch =>
       _matches.length > 0 ? _matches[_currrentMatchIndex] : null;
-  Match get nextMatch => _matches.length > 0 ? _matches[_nextMatchIndex] : null;
+  Match? get nextMatch => _matches.length > 0 ? _matches[_nextMatchIndex] : null;
 
   void cycleMatch() {
-    if (currentMatch.decision != Decision.indecided) {
-      currentMatch.reset();
+    if (currentMatch!.decision != Decision.indecided) {
+      currentMatch!.reset();
 
       _matches.removeAt(0);
       _nextMatchIndex = _matches.length < 2 ? 0 : 1;
@@ -54,7 +54,7 @@ class MatchEngine extends ChangeNotifier {
 
 class Match extends ChangeNotifier {
   final profile;
-  var decision = Decision.indecided;
+  Decision? decision = Decision.indecided;
 
   Match({this.profile, this.decision});
 

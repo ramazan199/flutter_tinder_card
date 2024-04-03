@@ -4,14 +4,14 @@ class PhotoBrowser extends StatefulWidget {
   final List<String> photoAssetPaths;
   final int visiblePhotoIndex;
 
-  PhotoBrowser({this.photoAssetPaths, this.visiblePhotoIndex});
+  PhotoBrowser({required this.photoAssetPaths, required this.visiblePhotoIndex});
 
   @override
   _PhotoBrowserState createState() => _PhotoBrowserState();
 }
 
 class _PhotoBrowserState extends State<PhotoBrowser> {
-  int visiblePhotoIndex;
+  late int visiblePhotoIndex;
 
   @override
   void initState() {
@@ -104,7 +104,7 @@ class SelectedPhotoIndicator extends StatelessWidget {
   final int photoCount;
   final int visiblePhotoIndex;
 
-  SelectedPhotoIndicator({this.visiblePhotoIndex, this.photoCount});
+  SelectedPhotoIndicator({required this.visiblePhotoIndex, required this.photoCount});
 
   Widget _buildInactiveIndicator() {
     return new Expanded(

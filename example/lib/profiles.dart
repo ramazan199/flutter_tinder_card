@@ -3,5 +3,5 @@ class Profile {
   final String name;
   final String bio;
 
-  Profile({this.photos, this.name, this.bio});
+  Profile({required this.photos, required this.name, required this.bio});
 }

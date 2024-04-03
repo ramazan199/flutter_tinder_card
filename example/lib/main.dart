@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tinder_card/tinder_card.dart';
-import 'package:tinder_card_example/profiles.dart';
+
+import 'profiles.dart';
 
 void main() => runApp(MyApp());
 
