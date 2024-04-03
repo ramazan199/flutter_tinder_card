@@ -4,7 +4,8 @@ class PhotoBrowser extends StatefulWidget {
   final List<String> photoAssetPaths;
   final int visiblePhotoIndex;
 
-  PhotoBrowser({required this.photoAssetPaths, required this.visiblePhotoIndex});
+  PhotoBrowser(
+      {required this.photoAssetPaths, required this.visiblePhotoIndex});
 
   @override
   _PhotoBrowserState createState() => _PhotoBrowserState();
@@ -79,10 +80,15 @@ class _PhotoBrowserState extends State<PhotoBrowser> {
       fit: StackFit.expand,
       children: <Widget>[
         // Photo
-        new Image.network(
-          widget.photoAssetPaths[visiblePhotoIndex],
-          fit: BoxFit.cover,
-        ),
+        widget.photoAssetPaths[visiblePhotoIndex].startsWith('assets/')
+            ? new Image.asset(
+                widget.photoAssetPaths[visiblePhotoIndex],
+                fit: BoxFit.cover,
+              )
+            : new Image.network(
+                widget.photoAssetPaths[visiblePhotoIndex],
+                fit: BoxFit.cover,
+              ),
         // Photo indicator
         new Positioned(
           top: 0.0,
@@ -104,7 +110,8 @@ class SelectedPhotoIndicator extends StatelessWidget {
   final int photoCount;
   final int visiblePhotoIndex;
 
-  SelectedPhotoIndicator({required this.visiblePhotoIndex, required this.photoCount});
+  SelectedPhotoIndicator(
+      {required this.visiblePhotoIndex, required this.photoCount});
 
   Widget _buildInactiveIndicator() {
     return new Expanded(

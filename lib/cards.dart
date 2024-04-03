@@ -1,10 +1,8 @@
-import 'dart:js_util';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttery_dart2/layout.dart';
-import 'package:provider/provider.dart';
 
 import './matches.dart';
 import './photos.dart';
@@ -117,13 +115,10 @@ class _CardStackState extends State<CardStack> {
     switch (widget.matchEngine.currentMatch?.decision) {
       case Decision.nope:
         return SlideDirection.left;
-        break;
       case Decision.like:
         return SlideDirection.right;
-        break;
       case Decision.superLike:
         return SlideDirection.up;
-        break;
       default:
         return null;
     }
